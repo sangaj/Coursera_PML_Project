@@ -191,7 +191,7 @@ print(rpart)</code></pre>
 <pre class="r"><code>predict.rpart &lt;- predict(rpart, valid)
 conf.rpart &lt;- confusionMatrix(valid$classe, predict.rpart)
 accuracy.rpart &lt;- conf.rpart$overall[1]</code></pre>
-<p>we start a 10-fold cross validation to fit the classification trees and get the accuracy <span class="math inline">\(0.477707\)</span> on the validation set. It’s not a quite good results on test set. The performance on train set is also bad. These imply that it would not be overfitting and underfitting. The method itself is not the best choice. So we need another method to substitute it.</p>
+<p>we start a 10-fold cross validation to fit the classification trees and get the accuracy <span class="math inline">\(0.477707\)</span> on the validation set. It’s not a quite good results on test set. The out of sample error is around 53%. The performance on train set is also bad. These imply that it would not be overfitting and underfitting. The method itself is not the best choice. So we need another method to substitute it.</p>
 </div>
 <div id="random-forests" class="section level3">
 <h3>Random Forests</h3>
@@ -219,7 +219,7 @@ print(rf)</code></pre>
 <pre class="r"><code>predict.rf &lt;- predict(rf, valid)
 conf.rf &lt;- confusionMatrix(valid$classe, predict.rf)
 accuracy.rf &lt;- conf.rf$overall[1]</code></pre>
-<p>we still use a 10-fold cross validation to fit the random forest and get the accuracy <span class="math inline">\(1\)</span> on the validation set. It’s just get the perfect results from it. since it just fit on the data we already have. It could still be overfitting on the another independet test set. Thus ,we introduce another method to check the performance.(10 fold CV may take a long time to reach the results, we may set it to 5 to reduce the running time)</p>
+<p>we still use a 10-fold cross validation to fit the random forest and get the accuracy <span class="math inline">\(1\)</span> on the validation set. It just get the perfect results from it. The out of sample error is 0.Since it just fit on the data we already have. It could still be overfitting on the another independet test set. Thus ,we introduce another method to check the performance.(10 fold CV may take a long time to reach the results, we may set it to 5 to reduce the running time)</p>
 </div>
 <div id="boosting-trees" class="section level3">
 <h3>Boosting trees</h3>
@@ -229,7 +229,7 @@ c5 &lt;- train(classe ~ ., data = train,method = &quot;C5.0&quot;,tuneGrid = gri
 predict.c5 &lt;- predict(c5, valid)
 conf.c5 &lt;- confusionMatrix(valid$classe, predict.c5)
 accuracy.c5 &lt;- conf.c5$overall[1]</code></pre>
-<p>we use a 10-fold cross validation to fit the boosting and get the accuracy <span class="math inline">\(1\)</span> on the validation set. It’s also just get the perfect results from it. Boosting tree is based on weak learners which gives high bias and low variance. Boosting reduces error mainly by reducing bias. On the other hand, Random Forest uses completely grown decision trees which has low bias and high variance. It tackles the error reduction task by reducing variance. These two methods both gives perfect results. Let’s see what whould be in the test set.(10 fold CV may take a long time to reach the results, we may set it to 5 to reduce the running time)</p>
+<p>we use a 10-fold cross validation to fit the boosting and get the accuracy <span class="math inline">\(1\)</span> on the validation set. It also just get the perfect results from it. The out of sample error 0 Boosting tree is based on weak learners which gives high bias and low variance. Boosting reduces error mainly by reducing bias. On the other hand, Random Forest uses completely grown decision trees which has low bias and high variance. It tackles the error reduction task by reducing variance. These two methods both gives perfect results. Let’s see what whould be in the test set.(10 fold CV may take a long time to reach the results, we may set it to 5 to reduce the running time)</p>
 </div>
 <div id="application-in-test-set" class="section level3">
 <h3>Application in Test set</h3>
