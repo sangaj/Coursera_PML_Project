@@ -1,4 +1,10 @@
 Coursera  Course
 Practical machine learning
 
-case.Rmd file and case.html
+# R markdown file
+case.Rmd file 
+
+Methods used in the case : Classification Trees,Random Forests,Boosting trees
+
+# The output file 
+case.html
