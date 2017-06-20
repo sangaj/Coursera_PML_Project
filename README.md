@@ -1,4 +1,4 @@
-Coursera  Course
+## Coursera  Course
 Practical machine learning
 
 # R markdown file
